@@ -1,0 +1,16 @@
+//@ContextConfiguration(classes = ...) for multimodule project
+@JsonTest
+class SerializerDemoApplicationTests {
+
+    @Autowired
+    private JacksonTester<User> json;
+
+    @Test
+    void printJsonResult() throws IOException {
+        User user = User.builder().name("User Name").birthDate(new Date()).build();
+
+        JsonContent<User> jsonContent = this.json.write(user);
+
+        System.out.println(jsonContent);
+    }
+}
